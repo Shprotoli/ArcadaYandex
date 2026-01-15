@@ -1,21 +1,24 @@
 from dataclasses import dataclass
 from pathlib import Path
 
+
 @dataclass
 class HighScore:
     best: int = 0
 
-def load_highscore(path: str) -> HighScore:
+
+def load_highscore(path):
     p = Path(path)
     if not p.exists():
         return HighScore(0)
     try:
-        return HighScore(int(p.read_text().strip()))
+        return HighScore(int(p.read_text(encoding="utf-8").strip()))
     except Exception:
         return HighScore(0)
 
-def save_highscore(path: str, value: int) -> None:
+
+def save_highscore(path, value):
     try:
-        Path(path).write_text(str(value))
+        Path(path).write_text(str(int(value)), encoding="utf-8")
     except Exception:
         pass

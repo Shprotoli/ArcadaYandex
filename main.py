@@ -4,8 +4,8 @@ from views import StartView
 
 
 def main():
-    w = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    w.show_view(StartView())
+    window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+    window.show_view(StartView())
     arcade.run()
 
 
