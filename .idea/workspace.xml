@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ChangeListManager">
     <list default="true" id="2c951690-db23-42f0-af3e-3402cfc7fbc5" name="Changes" comment="" />
+=======
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eefdae41-23c7-4c14-8b71-1b50a1bc03cd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/CoinRace.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> 19a2861 (first commit)
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +29,11 @@
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 6
 }]]></component>
+<<<<<<< HEAD
   <component name="ProjectId" id="37g5QUQyJg7BMA7n2p7OfykFcSN" />
+=======
+  <component name="ProjectId" id="381GkSJDZxAdNksziPd2LvO0fuL" />
+>>>>>>> 19a2861 (first commit)
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -21,10 +41,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+<<<<<<< HEAD
+=======
+    "Python.main.executor": "Run",
+>>>>>>> 19a2861 (first commit)
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master"
   }
 }]]></component>
+<<<<<<< HEAD
+=======
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lel2346\PycharmProjects\CoinRace" />
+    </key>
+  </component>
+>>>>>>> 19a2861 (first commit)
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -35,11 +67,19 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="2c951690-db23-42f0-af3e-3402cfc7fbc5" name="Changes" comment="" />
       <created>1767311857552</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1767311857552</updated>
+=======
+      <changelist id="eefdae41-23c7-4c14-8b71-1b50a1bc03cd" name="Changes" comment="" />
+      <created>1767959806556</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1767959806556</updated>
+>>>>>>> 19a2861 (first commit)
     </task>
     <servers />
   </component>
