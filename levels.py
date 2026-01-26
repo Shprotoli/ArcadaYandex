@@ -1,76 +1,104 @@
 from dataclasses import dataclass
-from typing import List, Tuple
+from typing import Iterable, Set, Tuple
 import arcade
 from settings import TILE, COLS, ROWS
+
+GridPos = Tuple[int, int]
 
 
 @dataclass(frozen=True)
 class LevelData:
-    walls: List[Tuple[int, int]]
-    coins: List[Tuple[int, int]]
+    walls: Set[GridPos]
+    coins: Set[GridPos]
 
 
-def _to_world(c, r):
+def to_world(c: int, r: int) -> tuple[float, float]:
     return c * TILE + TILE / 2, r * TILE + TILE / 2
 
 
-def _border():
-    b = []
+def border_walls() -> Set[GridPos]:
+    walls = set()
+
     for c in range(COLS):
-        b.append((c, 0))
-        b.append((c, ROWS - 1))
+        walls.add((c, 0))
+        walls.add((c, ROWS - 1))
+
     for r in range(ROWS):
-        b.append((0, r))
-        b.append((COLS - 1, r))
-    return b
+        walls.add((0, r))
+        walls.add((COLS - 1, r))
+
+    return walls
 
 
-def build_level(level):
-    walls = _border()
-    if level == 1:
-        for c in range(2, COLS - 2):
-            if c % 2 == 0:
-                walls.append((c, ROWS // 2))
-        for r in range(2, ROWS - 2):
-            if r % 2 == 1:
-                walls.append((COLS // 3, r))
-        coins = []
-        for c in range(1, COLS - 1):
-            for r in range(1, ROWS - 1):
-                if (c, r) not in walls and (c + r) % 5 == 0:
-                    coins.append((c, r))
-        return LevelData(walls, coins)
+def level1_walls() -> Set[GridPos]:
+    walls = border_walls()
+
+    mid_r = ROWS // 2
+    mid_c = COLS // 3
+
+    for c in range(2, COLS - 2):
+        if c % 2 == 0:
+            walls.add((c, mid_r))
+
+    for r in range(2, ROWS - 2):
+        if r % 2 == 1:
+            walls.add((mid_c, r))
+
+    return walls
+
+
+def level2_walls() -> Set[GridPos]:
+    walls = border_walls()
 
     for r in range(2, ROWS - 2):
         if r % 2 == 0:
             for c in range(2, COLS - 2):
                 if c % 4 != 0:
-                    walls.append((c, r))
-    for c in range(4, COLS - 4, 5):
-        for r in range(2, ROWS - 2, 3):
-            if (c, r) in walls:
-                walls.remove((c, r))
+                    walls.add((c, r))
 
-    coins = []
+    holes = {
+        (c, r)
+        for c in range(4, COLS - 4, 5)
+        for r in range(2, ROWS - 2, 3)
+    }
+
+    return walls - holes
+
+
+def generate_coins(walls: Set[GridPos], rule) -> Set[GridPos]:
+    coins = set()
+
     for c in range(1, COLS - 1):
         for r in range(1, ROWS - 1):
-            if (c, r) not in walls and (c * 3 + r) % 7 == 0:
-                coins.append((c, r))
+            if (c, r) not in walls and rule(c, r):
+                coins.add((c, r))
+
+    return coins
+
+
+def build_level(level: int) -> LevelData:
+    if level == 1:
+        walls = level1_walls()
+        coins = generate_coins(walls, lambda c, r: (c + r) % 5 == 0)
+    else:
+        walls = level2_walls()
+        coins = generate_coins(walls, lambda c, r: (c * 3 + r) % 7 == 0)
+
     return LevelData(walls, coins)
 
 
-def make_wall_sprite(c, r):
-    x, y = _to_world(c, r)
-    s = arcade.SpriteSolidColor(TILE, TILE, arcade.color.DARK_SLATE_GRAY)
-    s.center_x = x
-    s.center_y = y
-    return s
+def make_wall_sprite(c: int, r: int) -> arcade.Sprite:
+    x, y = to_world(c, r)
+    sprite = arcade.SpriteSolidColor(TILE, TILE, arcade.color.DARK_SLATE_GRAY)
+    sprite.center_x = x
+    sprite.center_y = y
+    return sprite
 
 
-def make_coin_sprite(c, r):
-    x, y = _to_world(c, r)
+def make_coin_sprite(c: int, r: int) -> arcade.Sprite:
+    x, y = to_world(c, r)
     size = int(TILE * 0.5)
-    s = arcade.SpriteSolidColor(size, size, arcade.color.GOLD)
-    s.center_x = x
-    s.center_y = y
-    return s
+    sprite = arcade.SpriteSolidColor(size, size, arcade.color.GOLD)
+    sprite.center_x = x
+    sprite.center_y = y
+    return sprite
